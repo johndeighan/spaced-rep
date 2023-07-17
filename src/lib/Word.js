@@ -11,10 +11,6 @@ import {
 } from '@jdeighan/base-utils';
 
 import {
-  Machine
-} from '@jdeighan/base-utils/machine';
-
-import {
   assert,
   croak
 } from '@jdeighan/base-utils/exceptions';
@@ -23,7 +19,7 @@ export var Word = (function() {
   // ---------------------------------------------------------------------------
   class Word {
     constructor(h) {
-      // --- Copy all keys from hWord to "this"
+      // --- Copy all keys from h to "this"
       Object.assign(this, h);
       this.index = Word.nextIndex;
       Word.nextIndex += 1;

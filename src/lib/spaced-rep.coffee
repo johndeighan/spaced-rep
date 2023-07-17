@@ -6,7 +6,7 @@ import {
 	} from '@jdeighan/base-utils'
 import {assert, croak} from '@jdeighan/base-utils/exceptions'
 import {dbgEnter, dbgReturn, dbg} from '@jdeighan/base-utils/debug'
-import {BaseWordList} from '@jdeighan/spaced-rep/basewordlist'
+import {BaseWordList} from '@jdeighan/spaced-rep/BaseWordList'
 
 hDefOptions = {
 	histLen: 5
@@ -119,6 +119,13 @@ export class LearnedWords
 		# --- Returns a timestamp, i.e. num millisecs since the epoch
 
 		dbgEnter 'workingDueTime', hWord
+
+	# ..........................................................
+
+	learnedDueTime: (hWord) ->
+		# --- Returns a timestamp, i.e. num millisecs since the epoch
+
+		dbgEnter 'learnedDueTime', hWord
 
 	# ..........................................................
 

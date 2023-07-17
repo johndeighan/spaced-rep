@@ -4,7 +4,6 @@ import {
 	undef, defined, notdefined, deepEqual,
 	isArrayOfHashes, isString, isArray,
 	} from '@jdeighan/base-utils'
-import {Machine} from '@jdeighan/base-utils/machine'
 import {assert, croak} from '@jdeighan/base-utils/exceptions'
 
 # ---------------------------------------------------------------------------

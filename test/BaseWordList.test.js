@@ -51,28 +51,28 @@ utest.like(42, words.word('en', 'need'), {
 });
 
 // ---------------------------------------------------------------------------
-utest.like(50, words.getNextUnseenWord(), {
+utest.like(50, words.getUnseen(), {
   pinyin: 'yī',
   en: 'one',
   zh: '一',
   index: 0
 });
 
-utest.like(57, words.getNextUnseenWord(), {
+utest.like(57, words.getUnseen(), {
   zh: '二',
   pinyin: 'èr',
   en: 'two',
   index: 1
 });
 
-utest.like(64, words.getNextUnseenWord(), {
+utest.like(64, words.getUnseen(), {
   zh: '三',
   pinyin: 'sān',
   en: 'three',
   index: 2
 });
 
-utest.like(71, words.getNextUnseenWord(), {
+utest.like(71, words.getUnseen(), {
   zh: '四',
   pinyin: 'sì',
   en: 'four',

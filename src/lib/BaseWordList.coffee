@@ -5,9 +5,10 @@ import {
 	getOptions,
 	} from '@jdeighan/base-utils'
 import {assert, croak} from '@jdeighan/base-utils/exceptions'
-import {Word} from '@jdeighan/spaced-rep/word'
+import {Word} from '@jdeighan/spaced-rep/Word'
 
 lBaseWords = undef     # filled in at end of this file
+hDefOptions = {}
 
 # ---------------------------------------------------------------------------
 

@@ -3,7 +3,8 @@
 import {
 	undef, defined, notdefined, range, deepEqual, getOptions,
 	} from '@jdeighan/base-utils'
-import {StateMachine} from '@jdeighan/base-utils/machine'
+import {assert, croak} from '@jdeighan/base-utils/exceptions'
+import {StateMachine} from '@jdeighan/base-utils/state-machine'
 
 hDefOptions = {
 	histLen: 5
@@ -17,13 +18,19 @@ export WRONG = 2
 
 # ---------------------------------------------------------------------------
 
-export class WordMachine extends Machine
+export class WordMachine extends StateMachine
 
 	constructor: (hOptions={}) ->
 
 		super 'unseen'
 		@hOptions = getOptions hOptions, hDefOptions
 		{histLen} = @hOptions
+
+	# ..........................................................
+
+	setState: () ->
+
+		croak "Don't call setState()"
 
 	# ..........................................................
 	# --- Default algorithm for determining whether a word is learned
@@ -46,7 +53,7 @@ export class WordMachine extends Machine
 	FETCH: () ->
 
 		@expectState 'unseen'
-		@setState 'learning', {lHistory: []}
+		super.setState 'learning', {lHistory: []}
 		return this
 
 	# ..........................................................
@@ -54,7 +61,7 @@ export class WordMachine extends Machine
 	TEST: () ->
 
 		@expectState 'learning'
-		@setState 'testing', {outcome: undef}
+		super.setState 'testing', {outcome: undef}
 		return this
 
 	# ..........................................................
@@ -71,9 +78,9 @@ export class WordMachine extends Machine
 		while (lHistory.length > histLen)
 			lHistory.shift()
 		if @isLearned()
-			@setState 'learned', {numReviews: 0}
+			super.setState 'learned', {numReviews: 0}
 		else
-			@setState 'learning'
+			super.setState 'learning'
 		return this
 
 	# ..........................................................
@@ -81,7 +88,7 @@ export class WordMachine extends Machine
 	REVIEW: () ->
 
 		@expectState 'learned'
-		@setState 'reviewing', {outcome: undef}
+		super.setState 'reviewing', {outcome: undef}
 		return this
 
 	# ..........................................................
@@ -94,7 +101,7 @@ export class WordMachine extends Machine
 		{outcome, numReviews} = @hData
 		if (outcome == RIGHT)
 			@setVar('numReviews', numReviews + 1)
-			setState 'learned'
+			super.setState 'learned'
 		else
-			@setState 'learning', {lHistory: []}
+			super.setState 'learning', {lHistory: []}
 		return this

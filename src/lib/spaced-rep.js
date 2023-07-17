@@ -27,7 +27,7 @@ import {
 
 import {
   BaseWordList
-} from '@jdeighan/spaced-rep/basewordlist';
+} from '@jdeighan/spaced-rep/BaseWordList';
 
 hDefOptions = {
   histLen: 5,
@@ -57,7 +57,7 @@ export var WordList = class WordList extends BaseWordList {
     } else if ((this.lWorking.length > 0) && this.lWorking[0].isDue()) {
       return this.lWorking[0];
     } else if (this.lWorking.length < workingSetSize) {
-      word = this.getNextUnseenWord();
+      word = this.getUnseen();
       if (defined(word)) {
         this.lWorking.push(word);
         return word;
@@ -144,6 +144,12 @@ export var LearnedWords = class LearnedWords {
   workingDueTime(hWord) {
     // --- Returns a timestamp, i.e. num millisecs since the epoch
     return dbgEnter('workingDueTime', hWord);
+  }
+
+  // ..........................................................
+  learnedDueTime(hWord) {
+    // --- Returns a timestamp, i.e. num millisecs since the epoch
+    return dbgEnter('learnedDueTime', hWord);
   }
 
   // ..........................................................
